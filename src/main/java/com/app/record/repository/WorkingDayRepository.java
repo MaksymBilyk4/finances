@@ -18,4 +18,6 @@ public interface WorkingDayRepository extends JpaRepository<WorkingDay, Long> {
     Optional<WorkingDay> findByEmployerName(Employer employer);
 
     Optional<WorkingDay> findByDay (Date day);
+
+    boolean deleteByDay (Date date);
 }

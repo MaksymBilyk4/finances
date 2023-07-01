@@ -5,9 +5,15 @@ import com.app.record.repository.ExpensesRepository;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -19,31 +25,44 @@ public class ExpenseService implements BaseService<Expense> {
 
     @Override
     public List<Expense> findAll() {
-        return null;
+        return expensesRepository.findAll();
     }
 
     @Override
-    public List<Expense> findAllPageable(int size, int pageNumber) {
-        return null;
+    public Page<Expense> findAllPageable(int size, int pageNumber) {
+        Pageable pageable = PageRequest.of(pageNumber, size, Sort.by("day"));
+        return expensesRepository.findAll(pageable);
     }
 
     @Override
     public Expense findById(Long id) {
-        return null;
+        Optional<Expense> expense = expensesRepository.findById(id);
+        return expense.orElse(null);
     }
 
     @Override
-    public void update(Expense obj) {
-
+    public Expense update(Expense obj) {
+        return expensesRepository.save(obj);
     }
 
     @Override
-    public void create(Expense obj) {
-
+    public Expense create(Expense obj) {
+        return expensesRepository.save(obj);
     }
 
     @Override
-    public void delete(Long id) {
+    public void deleteById(Long id) {
+        expensesRepository.deleteById(id);
+    }
 
+    @Override
+    public boolean deleteByDate(Date date) {
+        return expensesRepository.deleteByDay(date);
+    }
+
+    @Override
+    public Expense findByDate(Date date) {
+        Optional<Expense> expense = expensesRepository.findByDay(date);
+        return expense.orElse(null);
     }
 }

@@ -13,4 +13,7 @@ public interface ExpensesRepository extends JpaRepository<Expense, Long> {
     Page<Expense> findAll (Pageable pageable);
 
     Optional<Expense> findByDay (Date date);
+
+    boolean deleteByDay (Date date);
+
 }

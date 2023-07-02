@@ -45,4 +45,19 @@ public class WorkingDay extends BaseEntity {
 
     @Column(name = "clear", nullable = false)
     private int clearProfit;
+
+    @Override
+    public String toString() {
+        return "WorkingDay{" +
+                "day=" + day +
+                ", employerName=" + employerName +
+                ", cashProfit=" + cashProfit +
+                ", cardProfit=" + cardProfit +
+                ", profit=" + profit +
+                ", employerPercent=" + employerPercent +
+                ", dailySalary=" + dailySalary +
+                ", salary=" + salary +
+                ", clearProfit=" + clearProfit +
+                '}';
+    }
 }

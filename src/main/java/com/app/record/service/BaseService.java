@@ -19,7 +19,5 @@ public interface BaseService<T> {
 
     void deleteById(Long id);
 
-    boolean deleteByDate(Date date);
-
-    T findByDate(Date date);
+    T findByDate(String date);
 }

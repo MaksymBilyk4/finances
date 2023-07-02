@@ -2,6 +2,7 @@ package com.app.record.service;
 
 import com.app.record.model.expense.Expense;
 import com.app.record.repository.ExpensesRepository;
+import com.app.record.utils.DateParser;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -56,12 +57,9 @@ public class ExpenseService implements BaseService<Expense> {
     }
 
     @Override
-    public boolean deleteByDate(Date date) {
-        return expensesRepository.deleteByDay(date);
-    }
+    public Expense findByDate(String dateStr) {
+        Date date = new DateParser().parseStringToDate(dateStr);
 
-    @Override
-    public Expense findByDate(Date date) {
         Optional<Expense> expense = expensesRepository.findByDay(date);
         return expense.orElse(null);
     }

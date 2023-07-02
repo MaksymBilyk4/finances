@@ -43,7 +43,13 @@ public class ExpenseService implements BaseService<Expense> {
 
     @Override
     public Expense update(Expense obj, Long id) {
-        return expensesRepository.save(obj);
+        Expense expense = findById(id);
+
+        expense.setCash(obj.getCash());
+        expense.setDay(obj.getDay());
+        expense.setName(obj.getName());
+
+        return expensesRepository.save(expense);
     }
 
     @Override
@@ -59,8 +65,8 @@ public class ExpenseService implements BaseService<Expense> {
     @Override
     public Expense findByDate(String dateStr) {
         Date date = new DateParser().parseStringToDate(dateStr);
-
         Optional<Expense> expense = expensesRepository.findByDay(date);
+
         return expense.orElse(null);
     }
 }

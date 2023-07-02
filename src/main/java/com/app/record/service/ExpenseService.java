@@ -42,7 +42,7 @@ public class ExpenseService implements BaseService<Expense> {
     }
 
     @Override
-    public Expense update(Expense obj) {
+    public Expense update(Expense obj, Long id) {
         return expensesRepository.save(obj);
     }
 

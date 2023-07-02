@@ -65,13 +65,17 @@ public class WorkingDayController {
 
     @PutMapping
     public WorkingDayResponseDto update(
-            @RequestBody WorkingDayRequestDto dto
+            @RequestBody WorkingDayRequestDto dto,
+            @RequestParam Long id
     ) {
+
         WorkingDay workingDay = requestMapper.convertToEntity(dto);
-        return responseMapper.convertToDto(service.update(workingDay));
+        System.out.println(workingDay);
+
+        return responseMapper.convertToDto(service.update(workingDay, id));
     }
 
-    @GetMapping("/{date}")
+    @GetMapping("/date/{date}")
     public WorkingDayResponseDto findByDate(
             @PathVariable String date
     ) {

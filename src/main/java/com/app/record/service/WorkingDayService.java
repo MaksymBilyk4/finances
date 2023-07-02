@@ -43,8 +43,8 @@ public class WorkingDayService implements BaseService<WorkingDay> {
     }
 
     @Override
-    public WorkingDay update(WorkingDay obj) {
-        WorkingDay day = findById(obj.getId());
+    public WorkingDay update(WorkingDay obj, Long id) {
+        WorkingDay day = findById(id);
 
         day.setDay(obj.getDay());
         day.setEmployerName(obj.getEmployerName());

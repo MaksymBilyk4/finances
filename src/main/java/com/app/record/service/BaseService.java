@@ -13,7 +13,7 @@ public interface BaseService<T> {
 
     T findById(Long id);
 
-    T update(T obj);
+    T update(T obj, Long id);
 
     T create(T obj);
 

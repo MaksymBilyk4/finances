@@ -1,6 +1,7 @@
 package com.app.record.service;
 
 import com.app.record.model.expense.Expense;
+import com.app.record.model.workingDay.WorkingDay;
 import com.app.record.repository.ExpensesRepository;
 import com.app.record.utils.DateParser;
 import jakarta.transaction.Transactional;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -68,5 +70,25 @@ public class ExpenseService implements BaseService<Expense> {
         Optional<Expense> expense = expensesRepository.findByDay(date);
 
         return expense.orElse(null);
+    }
+
+    @Override
+    public List<Expense> findAllByPeriod(String start, String end) {
+        List<Expense> days = findAll();
+
+        DateParser dateParser = new DateParser();
+
+        Date startDate = dateParser.parseStringToDate(start);
+        Date endDate = dateParser.parseStringToDate(end);
+
+
+        List<Expense> filtered = new ArrayList<>(days.stream()
+                .filter(d -> d.getDay().after(startDate) && d.getDay().before(endDate))
+                .toList());
+
+        filtered.add(0, findByDate(start));
+        filtered.add(findByDate(end));
+
+        return filtered;
     }
 }

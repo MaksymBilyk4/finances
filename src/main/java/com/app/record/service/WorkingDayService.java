@@ -12,9 +12,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -70,10 +70,30 @@ public class WorkingDayService implements BaseService<WorkingDay> {
     }
 
     @Override
-    public WorkingDay findByDate (String dateStr) {
+    public WorkingDay findByDate(String dateStr) {
         Date date = new DateParser().parseStringToDate(dateStr);
         Optional<WorkingDay> day = workingDayRepository.findByDay(date);
 
         return day.orElse(null);
+    }
+
+    @Override
+    public List<WorkingDay> findAllByPeriod(String start, String end) {
+        List<WorkingDay> days = findAll();
+
+        DateParser dateParser = new DateParser();
+
+        Date startDate = dateParser.parseStringToDate(start);
+        Date endDate = dateParser.parseStringToDate(end);
+
+
+        List<WorkingDay> filtered = new ArrayList<>(days.stream()
+                .filter(d -> d.getDay().after(startDate) && d.getDay().before(endDate))
+                .toList());
+
+        filtered.add(0, findByDate(start));
+        filtered.add(findByDate(end));
+
+        return filtered;
     }
 }

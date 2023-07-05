@@ -20,4 +20,6 @@ public interface BaseService<T> {
     void deleteById(Long id);
 
     T findByDate(String date);
+
+    List<T> findAllByPeriod(String start, String end);
 }

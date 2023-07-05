@@ -78,5 +78,14 @@ public class ExpenseController {
         return responseMapper.convertToDto(expenseService.findByDate(date));
     }
 
-
+    @GetMapping("/date")
+    public List<ExpenseResponseDto> findByPeriod(
+            @RequestParam String start,
+            @RequestParam String end
+    ) {
+        return expenseService.findAllByPeriod(start, end)
+                .stream()
+                .map(responseMapper::convertToDto)
+                .collect(Collectors.toList());
+    }
 }

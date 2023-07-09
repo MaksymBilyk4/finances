@@ -54,7 +54,7 @@ const MainLayout = ({children}) => {
 };
 
 MainLayout.propTypes = {
-    children: PropTypes.func,
+    children: PropTypes.object,
 }
 
 export default MainLayout;

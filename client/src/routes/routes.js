@@ -1,6 +1,7 @@
 import Data from "../pages/Data";
+import Day from "../pages/Day";
 import {PATH} from "./PATH";
-import Admin from "../pages/Admin";
+import Expenses from "../pages/Expenses";
 
 export const routes = [
     {
@@ -8,7 +9,11 @@ export const routes = [
         path: PATH.DATA
     },
     {
-        element: <Admin/>,
-        path: PATH.ADMIN
+        element: <Day/>,
+        path: PATH.DAY_ADMIN
+    },
+    {
+        element: <Expenses/>,
+        path: PATH.EXPENSES_ADMIN
     }
 ]

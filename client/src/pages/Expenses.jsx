@@ -1,12 +1,11 @@
 import React from 'react';
 
-const Admin = () => {
-
+const Expenses = () => {
     return (
         <div>
-            admin
+
         </div>
     );
 };
 
-export default Admin;
+export default Expenses;

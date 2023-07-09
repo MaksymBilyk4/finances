@@ -1,4 +1,5 @@
 export const PATH = {
-    ADMIN: "/admin",
+    EXPENSES_ADMIN: "/expenses",
+    DAY_ADMIN: "/day",
     DATA: "/"
 }

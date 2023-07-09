@@ -63,15 +63,13 @@ public class WorkingDayController {
         service.deleteById(id);
     }
 
-    @PutMapping
+    @PutMapping("/{id}")
     public WorkingDayResponseDto update(
             @RequestBody WorkingDayRequestDto dto,
-            @RequestParam Long id
+            @PathVariable Long id
     ) {
 
         WorkingDay workingDay = requestMapper.convertToEntity(dto);
-        System.out.println(workingDay);
-
         return responseMapper.convertToDto(service.update(workingDay, id));
     }
 

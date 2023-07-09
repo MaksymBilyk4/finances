@@ -1,25 +1,22 @@
 import {
-    CalculatorOutlined,
-    CalendarOutlined,
-    HomeOutlined,
-    OrderedListOutlined,
-    TeamOutlined
+    DatabaseOutlined, DiffOutlined,
+    MoneyCollectOutlined,
 } from "@ant-design/icons";
 
 export const sideMenuItems = [
     {
-        key: "Admin",
-        icon: <HomeOutlined/>,
-        label: "Головна",
-    },
-    {
         key: "Expense",
-        icon: <TeamOutlined />,
-        label: "Витрати",
+        icon: <DiffOutlined/>,
+        label: "Додати витрати",
     },
     {
-        key: "Calculating",
-        icon: <CalculatorOutlined />,
+        key: "WorkingDay",
+        icon: <MoneyCollectOutlined/>,
+        label: "Додати статистику за робочий день",
+    },
+    {
+        key: "Data",
+        icon: <DatabaseOutlined/>,
         label: "Дані та Підрахунки"
     }
 ]

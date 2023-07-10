@@ -1,5 +1,4 @@
 import React from 'react';
-import {Layout} from "antd";
 import {Route, Routes} from "react-router";
 import {routes} from "./routes/routes";
 import MainLayout from "./components/Layout/MainLayout";

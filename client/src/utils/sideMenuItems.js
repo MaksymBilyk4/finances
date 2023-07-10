@@ -17,8 +17,13 @@ export const sideMenuItems = [
         label: (<Link to={PATH.DAY_ADMIN}>Додати дані за день</Link>),
     },
     {
-        key: PATH.DATA,
+        key: PATH.DAY_DATA,
         icon: <DatabaseOutlined/>,
-        label: (<Link to={PATH.DATA}>Дані та Підрахунки</Link>),
+        label: (<Link to={PATH.DAY_DATA}>Дні</Link>),
+    },
+    {
+        key: PATH.EXPENSE_DATA,
+        icon: <DatabaseOutlined/>,
+        label: (<Link to={PATH.EXPENSE_DATA}>Витрати</Link>),
     }
 ]

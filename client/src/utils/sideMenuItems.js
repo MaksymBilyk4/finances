@@ -7,17 +7,17 @@ import {PATH} from "../routes/PATH";
 
 export const sideMenuItems = [
     {
-        key: "Expense",
+        key: PATH.EXPENSES_ADMIN,
         icon: <DiffOutlined/>,
         label: (<Link to={PATH.EXPENSES_ADMIN}>Додати витрати</Link>),
     },
     {
-        key: "WorkingDay",
+        key: PATH.DAY_ADMIN,
         icon: <MoneyCollectOutlined/>,
         label: (<Link to={PATH.DAY_ADMIN}>Додати дані за день</Link>),
     },
     {
-        key: "Data",
+        key: PATH.DATA,
         icon: <DatabaseOutlined/>,
         label: (<Link to={PATH.DATA}>Дані та Підрахунки</Link>),
     }

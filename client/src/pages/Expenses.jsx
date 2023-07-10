@@ -20,13 +20,6 @@ const Expenses = () => {
             name: description,
             cash: cost
         });
-        console.log({
-            date: parseDate(date),
-            name: description,
-            cash: cost
-        });
-
-        console.log(data);
     }
 
     return (

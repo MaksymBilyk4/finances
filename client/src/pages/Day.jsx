@@ -16,7 +16,7 @@ const Day = () => {
     const [clearProfit, setClearProfit] = useState(0);
     const [showData, setShowData] = useState(false);
 
-    const onDateChange = val => setDate(val.$d);
+    const onDateChange = val => setDate(val?.$d || "");
     const onEmployerChange = val => setEmployer(val);
     const onCashChange = val => setCashProfit(val);
     const onCardChange = val => setCardProfit(val);
@@ -43,7 +43,7 @@ const Day = () => {
             employerPercent: employerPercent,
             dailySalary: dailySalary,
             salary: salary,
-            clearProfit: cashProfit
+            clearProfit: clearProfit
         }
 
         const resp = create(data);

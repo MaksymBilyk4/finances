@@ -78,7 +78,7 @@ public class WorkingDayController {
     public WorkingDayResponseDto findByDate(
             @PathVariable String date
     ) {
-        return responseMapper.convertToDto(service.findByDate(date));
+        return responseMapper.convertToDto(service.findByDate(date).get());
     }
 
     @GetMapping("/date")
@@ -87,6 +87,16 @@ public class WorkingDayController {
             @RequestParam String end
     ) {
         return service.findAllByPeriod(start, end)
+                .stream()
+                .map(responseMapper::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/date-after")
+    public List<WorkingDayResponseDto> findByDateAfter(
+            @RequestParam String from
+    ) {
+        return service.findAllByDateAfter(from)
                 .stream()
                 .map(responseMapper::convertToDto)
                 .collect(Collectors.toList());

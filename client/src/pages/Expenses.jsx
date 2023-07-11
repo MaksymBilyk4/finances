@@ -10,7 +10,7 @@ const Expenses = () => {
     const [cost, setCost] = useState(0.00);
     const [description, setDescription] = useState("");
 
-    const onDateChange = val => setDate(val.$d);
+    const onDateChange = val => setDate(val?.$d || "");
     const onCostChange = val => setCost(val);
     const onDescriptionChange = e => setDescription(e.target.value);
 

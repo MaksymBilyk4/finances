@@ -64,7 +64,7 @@ public class ExpenseService implements BaseService<Expense> {
         expensesRepository.deleteById(id);
     }
 
-    @Override
+//    @Override
     public Expense findByDate(String dateStr) {
         Date date = new DateParser().parseStringToDate(dateStr);
         Optional<Expense> expense = expensesRepository.findByDay(date);

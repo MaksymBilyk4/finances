@@ -12,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -26,7 +25,11 @@ public class WorkingDayService implements BaseService<WorkingDay> {
 
     @Override
     public List<WorkingDay> findAll() {
-        return workingDayRepository.findAll();
+        return workingDayRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(WorkingDay::getDay)
+                        .reversed())
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -69,12 +72,11 @@ public class WorkingDayService implements BaseService<WorkingDay> {
         workingDayRepository.deleteById(id);
     }
 
-    @Override
-    public WorkingDay findByDate(String dateStr) {
+//    @Override
+    public Optional<WorkingDay> findByDate(String dateStr) {
         Date date = new DateParser().parseStringToDate(dateStr);
-        Optional<WorkingDay> day = workingDayRepository.findByDay(date);
 
-        return day.orElse(null);
+        return workingDayRepository.findByDay(date);
     }
 
     @Override
@@ -89,10 +91,32 @@ public class WorkingDayService implements BaseService<WorkingDay> {
 
         List<WorkingDay> filtered = new ArrayList<>(days.stream()
                 .filter(d -> d.getDay().after(startDate) && d.getDay().before(endDate))
+                .sorted(Comparator.comparing(WorkingDay::getDay))
                 .toList());
 
-        filtered.add(0, findByDate(start));
-        filtered.add(findByDate(end));
+        Optional<WorkingDay> startDay = findByDate(start);
+        Optional<WorkingDay> endDay = findByDate(end);
+
+        startDay.ifPresent(workingDay -> filtered.add(0, workingDay));
+        endDay.ifPresent(filtered::add);
+
+        return filtered;
+    }
+
+    public List<WorkingDay> findAllByDateAfter(String start) {
+        List<WorkingDay> days = findAll();
+
+        DateParser dateParser = new DateParser();
+
+        Date startDate = dateParser.parseStringToDate(start);
+
+        List<WorkingDay> filtered = new ArrayList<>(days.stream()
+                .filter(d -> d.getDay().after(startDate))
+                .sorted(Comparator.comparing(WorkingDay::getDay))
+                .toList());
+
+        Optional<WorkingDay> day = findByDate(start);
+        day.ifPresent(workingDay -> filtered.add(0, workingDay));
 
         return filtered;
     }

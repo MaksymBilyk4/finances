@@ -19,7 +19,7 @@ export const sideMenuItems = [
     {
         key: PATH.DAY_DATA,
         icon: <DatabaseOutlined/>,
-        label: (<Link to={PATH.DAY_DATA}>Дні</Link>),
+        label: (<Link to={PATH.DAY_DATA}>Робочі дні</Link>),
     },
     {
         key: PATH.EXPENSE_DATA,

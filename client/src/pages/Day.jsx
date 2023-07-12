@@ -47,7 +47,7 @@ const Day = () => {
             date: parseDate(date),
             employer: employer,
             cashProfit: cashProfit,
-            cardProfit: cashProfit,
+            cardProfit: cardProfit,
             profit: profit,
             employerPercent: employerPercent,
             dailySalary: dailySalary,

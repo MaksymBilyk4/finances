@@ -76,7 +76,7 @@ public class ExpenseController {
     public ExpenseResponseDto findByDate(
             @PathVariable String date
     ) {
-        return responseMapper.convertToDto(expenseService.findByDate(date));
+        return responseMapper.convertToDto(expenseService.findByDate(date).get());
     }
 
     @GetMapping("/date")

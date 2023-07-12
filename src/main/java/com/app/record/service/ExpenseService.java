@@ -13,10 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -28,7 +26,11 @@ public class ExpenseService implements BaseService<Expense> {
 
     @Override
     public List<Expense> findAll() {
-        return expensesRepository.findAll();
+        return expensesRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(Expense::getDay)
+                        .reversed())
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -64,12 +66,11 @@ public class ExpenseService implements BaseService<Expense> {
         expensesRepository.deleteById(id);
     }
 
-//    @Override
-    public Expense findByDate(String dateStr) {
+    //    @Override
+    public Optional<Expense> findByDate(String dateStr) {
         Date date = new DateParser().parseStringToDate(dateStr);
-        Optional<Expense> expense = expensesRepository.findByDay(date);
 
-        return expense.orElse(null);
+        return expensesRepository.findByDay(date);
     }
 
     @Override
@@ -84,10 +85,14 @@ public class ExpenseService implements BaseService<Expense> {
 
         List<Expense> filtered = new ArrayList<>(days.stream()
                 .filter(d -> d.getDay().after(startDate) && d.getDay().before(endDate))
+                .sorted(Comparator.comparing(Expense::getDay))
                 .toList());
 
-        filtered.add(0, findByDate(start));
-        filtered.add(findByDate(end));
+        Optional<Expense> startDay = findByDate(start);
+        Optional<Expense> endDay = findByDate(end);
+
+        startDay.ifPresent(expense -> filtered.add(0, expense));
+        endDay.ifPresent(filtered::add);
 
         return filtered;
     }

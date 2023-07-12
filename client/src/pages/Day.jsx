@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, DatePicker, InputNumber, Select} from "antd";
+import {Button, DatePicker, InputNumber, message, Select} from "antd";
 import {parseDate} from "../utils/parseDate";
 import {create} from "../api/day_api";
 
@@ -15,6 +15,7 @@ const Day = () => {
     const [salary, setSalary] = useState(0);
     const [clearProfit, setClearProfit] = useState(0);
     const [showData, setShowData] = useState(false);
+    const [messageApi, contextHolder] = message.useMessage();
 
     const onDateChange = val => setDate(val?.$d || "");
     const onEmployerChange = val => setEmployer(val);
@@ -33,6 +34,14 @@ const Day = () => {
         setShowData(true);
     }
 
+    const success = () => {
+        messageApi.open({
+            type: 'success',
+            content: 'День успішно створено',
+        });
+    };
+
+
     const onDataSave = () => {
         const data = {
             date: parseDate(date),
@@ -46,11 +55,23 @@ const Day = () => {
             clearProfit: clearProfit
         }
 
-        const resp = create(data);
+        create(data);
+
+        setDate("");
+        setCashProfit(0);
+        setCardProfit(0);
+        setProfit(0);
+        setEmployerPercent(0);
+        setDailySalary(0);
+        setSalary(0);
+        setClearProfit(0);
+        setShowData(false);
+        success();
     }
 
     return (
         <>
+            {contextHolder}
             <div>
                 <p>Дата: </p>
                 <DatePicker format="DD.MM.YYYY"

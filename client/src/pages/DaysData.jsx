@@ -47,12 +47,13 @@ const DaysData = () => {
                     generalCalcs.clearProfit += obj.clearProfit;
                 });
 
+                generalCalcs.employerPercent = Math.round(generalCalcs.employerPercent);
+
                 generalCalcs.day = `${res?.data[0].day} - ${res?.data[res?.data?.length - 1].day}`
                 setResult(generalCalcs);
                 setShowCalcs(true);
             });
     }
-
 
     return (
         <div>
@@ -71,15 +72,6 @@ const DaysData = () => {
                 >Шукати та отримати підрахунки</Button>
             </div>
 
-            <Table
-                style={{marginTop: "20px"}}
-                columns={daysTableColumns}
-                dataSource={days}
-                pagination={{
-                    pageSize: 7
-                }}
-            />
-
             {showCalcs &&
                 <Table
                     style={{marginTop: "20px"}}
@@ -88,6 +80,18 @@ const DaysData = () => {
                     pagination={false}
                 />
             }
+
+            <Table
+                style={{marginTop: "20px"}}
+                columns={daysTableColumns}
+                dataSource={days}
+                pagination={
+                    endDate.length > 0 ?
+                    {
+                        pageSize: Number(endDate.slice(0, 2))
+                    } : false
+                }
+            />
 
         </div>
     );

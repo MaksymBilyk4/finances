@@ -3,6 +3,7 @@ import Day from "../pages/Day";
 import {PATH} from "./PATH";
 import Expenses from "../pages/Expenses";
 import ExpensesData from "../pages/ExpensesData";
+import Editing from "../pages/Editing";
 
 export const routes = [
     {
@@ -20,5 +21,9 @@ export const routes = [
     {
         element: <ExpensesData/>,
         path: PATH.EXPENSE_DATA
+    },
+    {
+        element: <Editing/>,
+        path: PATH.EDITING
     }
 ]

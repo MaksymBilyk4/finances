@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Button, DatePicker, Table} from "antd";
+import {Button, DatePicker, Popconfirm, Table} from "antd";
 import {daysTableColumns} from "../utils/daysTableColumns";
-import {findAll, findByPeriod} from "../api/day_api";
+import {deleteById, findAll, findByPeriod} from "../api/day_api";
 
 const {RangePicker} = DatePicker;
 
@@ -41,7 +41,7 @@ const DaysData = () => {
                     generalCalcs.cardProfit += obj.cardProfit;
                     generalCalcs.cashProfit += obj.cashProfit;
                     generalCalcs.profit += obj.profit;
-                    generalCalcs.dailySalary += obj.profit;
+                    generalCalcs.dailySalary += obj.dailySalary;
                     generalCalcs.employerPercent += obj.employerPercent;
                     generalCalcs.salary += obj.salary;
                     generalCalcs.clearProfit += obj.clearProfit;
@@ -91,6 +91,7 @@ const DaysData = () => {
                         pageSize: Number(endDate.slice(0, 2))
                     } : false
                 }
+                bordered={true}
             />
 
         </div>

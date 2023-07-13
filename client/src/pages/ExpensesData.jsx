@@ -9,7 +9,7 @@ const ExpensesData = () => {
 
     const [expenses, setExpenses] = useState([]);
     const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("0");
+    const [endDate, setEndDate] = useState("");
     const [result, setResult] = useState({});
     const [showCalcs, setShowCalcs] = useState(false);
 

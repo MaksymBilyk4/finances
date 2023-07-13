@@ -1,5 +1,5 @@
 import {
-    DatabaseOutlined, DiffOutlined,
+    DatabaseOutlined, DiffOutlined, EditOutlined,
     MoneyCollectOutlined,
 } from "@ant-design/icons";
 import {Link} from "react-router-dom";
@@ -25,5 +25,10 @@ export const sideMenuItems = [
         key: PATH.EXPENSE_DATA,
         icon: <DatabaseOutlined/>,
         label: (<Link to={PATH.EXPENSE_DATA}>Витрати</Link>),
+    },
+    {
+        key: PATH.EDITING,
+        icon: <EditOutlined />,
+        label: (<Link to={PATH.EDITING}>Редагування / Видалення</Link>)
     }
 ]

@@ -15,7 +15,6 @@ export const findById = async(id) => {
 }
 
 export const create = async (day) => {
-    console.log(process.env.REACT_APP_API_URL, API.MAPPING.create(EXPENSE_ENTITY_REQ_URL))
     return await $api.post(API.MAPPING.create(EXPENSE_ENTITY_REQ_URL), day);
 }
 

@@ -1,3 +1,5 @@
+import Price from "../components/Typography/Price";
+
 export const expenseTableColumns = [
     {
         title: "Дата",
@@ -12,6 +14,7 @@ export const expenseTableColumns = [
     {
         title: "Кількість грошей (грн)",
         dataIndex: "cash",
-        width: "20%"
+        width: "20%",
+        render: (cash) => <Price price={Number(-cash)}/>
     }
 ];

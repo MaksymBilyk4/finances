@@ -71,6 +71,7 @@ const Day = () => {
 
     return (
         <>
+            <h1 style={{textAlign: "center", fontSize: "22px"}}>Додати робочий день (статистику)</h1>
             {contextHolder}
             <div>
                 <p>Дата: </p>

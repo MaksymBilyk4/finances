@@ -7,11 +7,6 @@ import {PATH} from "../routes/PATH";
 
 export const sideMenuItems = [
     {
-        key: PATH.EXPENSES_ADMIN,
-        icon: <DiffOutlined/>,
-        label: (<Link to={PATH.EXPENSES_ADMIN}>Додати витрати - внесок даних</Link>),
-    },
-    {
         key: PATH.DAY_ADMIN,
         icon: <MoneyCollectOutlined/>,
         label: (<Link to={PATH.DAY_ADMIN}>Додати день - внесок даних</Link>),
@@ -20,6 +15,11 @@ export const sideMenuItems = [
         key: PATH.DAY_DATA,
         icon: <DatabaseOutlined/>,
         label: (<Link to={PATH.DAY_DATA}>Робочі дні - таблиця даних</Link>),
+    },
+    {
+        key: PATH.EXPENSES_ADMIN,
+        icon: <DiffOutlined/>,
+        label: (<Link to={PATH.EXPENSES_ADMIN}>Додати витрати - внесок даних</Link>),
     },
     {
         key: PATH.EXPENSE_DATA,

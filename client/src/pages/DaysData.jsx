@@ -57,8 +57,9 @@ const DaysData = () => {
 
     return (
         <div>
+            <h1 style={{textAlign: "center", fontSize: "22px"}}>Таблиця статистики робочих днів</h1>
             <div>
-                <p>
+                <p style={{fontWeight: "bold"}}>
                     ОТРИМАТИ ДНІ: ВІД - ДО
                 </p>
                 <RangePicker
@@ -74,6 +75,7 @@ const DaysData = () => {
 
             {showCalcs &&
                 <Table
+                    bordered
                     style={{marginTop: "20px"}}
                     columns={daysTableColumns}
                     dataSource={[result]}
@@ -91,7 +93,7 @@ const DaysData = () => {
                         pageSize: Number(endDate.slice(0, 2))
                     } : false
                 }
-                bordered={true}
+                bordered
             />
 
         </div>

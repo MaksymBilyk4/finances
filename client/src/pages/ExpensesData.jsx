@@ -25,7 +25,7 @@ const ExpensesData = () => {
     const onDateSearch = () => {
         findByPeriod(startDate, endDate)
             .then(res => {
-                setExpenses(res.data);
+                setExpenses(res?.data || []);
 
                 const generalCalcs = {
                     cash: 0
@@ -35,16 +35,18 @@ const ExpensesData = () => {
                     generalCalcs.cash += obj.cash;
                 });
 
+                generalCalcs.name = "Всі витрати за вибраний період"
                 generalCalcs.date = `${res?.data[0].date} - ${res?.data[res?.data?.length - 1].date}`
-                setResult(generalCalcs);
+                setResult(generalCalcs || {});
                 setShowCalcs(true);
             });
     }
 
     return (
         <div>
+            <h1 style={{textAlign: "center", fontSize: "22px"}}>Таблиця статистики витрат</h1>
             <div>
-                <p>ОТРИМАТИ ВИТРАТИ: ВІД - ДО</p>
+                <p style={{fontWeight: "bold"}}>ОТРИМАТИ ВИТРАТИ: ВІД - ДО</p>
 
                 <RangePicker
                     format={"DD.MM.YYYY"}
@@ -61,6 +63,7 @@ const ExpensesData = () => {
 
             {showCalcs &&
                 <Table
+                    bordered
                     style={{marginTop: "20px"}}
                     columns={expenseTableColumns}
                     dataSource={[result]}
@@ -69,6 +72,7 @@ const ExpensesData = () => {
             }
 
             <Table
+                bordered
                 style={{marginTop: "20px"}}
                 columns={expenseTableColumns}
                 dataSource={expenses}

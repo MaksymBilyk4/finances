@@ -18,7 +18,7 @@ const Expenses = () => {
     const success = () => {
         messageApi.open({
             type: 'success',
-            content: 'Покупку успішно створено',
+            content: 'Витрату успішно створено',
         });
     };
 
@@ -38,10 +38,11 @@ const Expenses = () => {
 
     return (
         <>
+            <h1 style={{textAlign: "center", fontSize: "22px"}}>Додати витрату</h1>
             {contextHolder}
             <Form onFinish={onSubmit}>
                 <Form.Item
-                    label="Витрата"
+                    label="Опис витрати"
                     rules={[{
                         required: true,
                         message: "Введіть опис витрати. На приклад: сміття, комуналка"
@@ -59,7 +60,7 @@ const Expenses = () => {
 
                 <Form.Item
                     style={{marginTop: "10px"}}
-                    label={"Дата"}
+                    label={"Дата витрати"}
                     rules={[{
                         required: true,
                         message: "Виберіть дату покупки"
@@ -73,7 +74,7 @@ const Expenses = () => {
 
                 <Form.Item
                     style={{marginTop: "10px"}}
-                    label="Вартість покупки"
+                    label="Вартість витрати"
                     rules={[{
                         required: true,
                         message: "Введіть вартість покупки"

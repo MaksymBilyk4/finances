@@ -30,6 +30,7 @@ const Editing = () => {
 
     return (
         <>
+            <h1 style={{fontSize: "24px", marginBottom: "30px", textAlign: "center"}}>Видалення даних</h1>
             <div style={{display: "grid", gridTemplateColumns: "repeat(2, 50%)"}}>
                 <div>
                     <h2>Робочі дні:</h2>
@@ -42,14 +43,14 @@ const Editing = () => {
                     )}
                 </div>
 
-                <div>
+                <div style={{justifySelf: "end"}}>
                     <h2>Витрати:</h2>
                     {expenses?.map(item =>
                         <p style={{fontSize: "18px"}}>
                             {item?.date} - <Button onClick={() => onHandleDeleteExpense(item?.id)}
-                                    danger
-                                    style={{marginRight: "5px"}}
-                                    type={"primary"}><DeleteOutlined/></Button>
+                                                   danger
+                                                   style={{marginRight: "5px"}}
+                                                   type={"primary"}><DeleteOutlined/></Button>
                         </p>
                     )}
                 </div>

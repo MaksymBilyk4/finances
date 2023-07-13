@@ -3,5 +3,6 @@ export const PATH = {
     DAY_ADMIN: "/day-admin",
     EXPENSE_DATA: "/expense-data",
     DAY_DATA: "/days-data",
-    EDITING: "/edit-data"
+    EDITING: "/edit-data",
+    TOTAL: "/total"
 }

@@ -1,6 +1,6 @@
 import {
     DatabaseOutlined, DiffOutlined, EditOutlined,
-    MoneyCollectOutlined,
+    MoneyCollectOutlined, ScheduleOutlined,
 } from "@ant-design/icons";
 import {Link} from "react-router-dom";
 import {PATH} from "../routes/PATH";
@@ -25,6 +25,11 @@ export const sideMenuItems = [
         key: PATH.EXPENSE_DATA,
         icon: <DatabaseOutlined/>,
         label: (<Link to={PATH.EXPENSE_DATA}>Витрати - таблиця даних</Link>),
+    },
+    {
+        key: PATH.TOTAL,
+        icon: <ScheduleOutlined />,
+        label: (<Link to={PATH.TOTAL}>Тотал - підрахувати всі витрати та доходи</Link>)
     },
     {
         key: PATH.EDITING,

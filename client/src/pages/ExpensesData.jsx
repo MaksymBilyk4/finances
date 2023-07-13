@@ -14,7 +14,7 @@ const ExpensesData = () => {
     const [showCalcs, setShowCalcs] = useState(false);
 
     useEffect(() => {
-        findAll().then(data => setExpenses(data.data));
+        findAll().then(data => setExpenses(data?.data));
     }, []);
 
     const onChange = (value, dateString) => {

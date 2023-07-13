@@ -25,7 +25,7 @@ const Day = () => {
     const onSalaryChange = val => setSalary(val || 0);
 
     const onDataCalc = () => {
-        const percent = (cardProfit + cashProfit) * 0.02;
+        const percent = Math.round((cardProfit + cashProfit) * 0.02);
         const earns = cardProfit + cashProfit
 
         setProfit(earns);

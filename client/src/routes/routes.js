@@ -4,6 +4,7 @@ import {PATH} from "./PATH";
 import Expenses from "../pages/Expenses";
 import ExpensesData from "../pages/ExpensesData";
 import Editing from "../pages/Editing";
+import Total from "../pages/Total";
 
 export const routes = [
     {
@@ -25,5 +26,9 @@ export const routes = [
     {
         element: <Editing/>,
         path: PATH.EDITING
+    },
+    {
+        element: <Total/>,
+        path: PATH.TOTAL
     }
 ]

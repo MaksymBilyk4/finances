@@ -9,26 +9,26 @@ export const sideMenuItems = [
     {
         key: PATH.EXPENSES_ADMIN,
         icon: <DiffOutlined/>,
-        label: (<Link to={PATH.EXPENSES_ADMIN}>Додати витрати</Link>),
+        label: (<Link to={PATH.EXPENSES_ADMIN}>Додати витрати - внесок даних</Link>),
     },
     {
         key: PATH.DAY_ADMIN,
         icon: <MoneyCollectOutlined/>,
-        label: (<Link to={PATH.DAY_ADMIN}>Додати дані за день</Link>),
+        label: (<Link to={PATH.DAY_ADMIN}>Додати день - внесок даних</Link>),
     },
     {
         key: PATH.DAY_DATA,
         icon: <DatabaseOutlined/>,
-        label: (<Link to={PATH.DAY_DATA}>Робочі дні</Link>),
+        label: (<Link to={PATH.DAY_DATA}>Робочі дні - таблиця даних</Link>),
     },
     {
         key: PATH.EXPENSE_DATA,
         icon: <DatabaseOutlined/>,
-        label: (<Link to={PATH.EXPENSE_DATA}>Витрати</Link>),
+        label: (<Link to={PATH.EXPENSE_DATA}>Витрати - таблиця даних</Link>),
     },
     {
         key: PATH.EDITING,
         icon: <EditOutlined />,
-        label: (<Link to={PATH.EDITING}>Видалення</Link>)
+        label: (<Link to={PATH.EDITING}>Видалення - видалити дані</Link>)
     }
 ]

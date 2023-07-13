@@ -25,9 +25,11 @@ const DaysData = () => {
     const onDateSearch = () => {
         findByPeriod(startDate, endDate)
             .then(res => {
-                setDays(res.data);
+                setDays(res?.data);
 
                 const generalCalcs = {
+                    able: false,
+                    day: "",
                     cardProfit: 0,
                     cashProfit: 0,
                     profit: 0,
@@ -36,6 +38,8 @@ const DaysData = () => {
                     salary: 0,
                     clearProfit: 0,
                 }
+
+                generalCalcs.able = res?.data.length > 0;
 
                 res?.data?.forEach(obj => {
                     generalCalcs.cardProfit += obj.cardProfit;
@@ -47,9 +51,7 @@ const DaysData = () => {
                     generalCalcs.clearProfit += obj.clearProfit;
                 });
 
-                generalCalcs.employerPercent = Math.round(generalCalcs.employerPercent);
-
-                generalCalcs.day = `${res?.data[0].day} - ${res?.data[res?.data?.length - 1].day}`
+                generalCalcs.day = `${res?.data[0]?.day} - ${res?.data[res?.data?.length - 1]?.day} `;
                 setResult(generalCalcs);
                 setShowCalcs(true);
             });
@@ -78,7 +80,7 @@ const DaysData = () => {
                     bordered
                     style={{marginTop: "20px"}}
                     columns={daysTableColumns}
-                    dataSource={[result]}
+                    dataSource={result?.able ? [result] : []}
                     pagination={false}
                 />
             }
@@ -87,12 +89,7 @@ const DaysData = () => {
                 style={{marginTop: "20px"}}
                 columns={daysTableColumns}
                 dataSource={days}
-                pagination={
-                    endDate.length > 0 ?
-                    {
-                        pageSize: Number(endDate.slice(0, 2))
-                    } : false
-                }
+                pagination={false}
                 bordered
             />
 

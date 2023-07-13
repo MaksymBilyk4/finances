@@ -91,8 +91,13 @@ public class ExpenseService implements BaseService<Expense> {
         Optional<Expense> startDay = findByDate(start);
         Optional<Expense> endDay = findByDate(end);
 
-        startDay.ifPresent(expense -> filtered.add(0, expense));
-        endDay.ifPresent(filtered::add);
+        if (filtered.size() == 0 && startDate.equals(endDate)) {
+            startDay.ifPresent(expense -> filtered.add(0, expense));
+        } else {
+            startDay.ifPresent(expense -> filtered.add(0, expense));
+            endDay.ifPresent(filtered::add);
+        }
+
 
         return filtered;
     }

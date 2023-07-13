@@ -72,7 +72,7 @@ public class WorkingDayService implements BaseService<WorkingDay> {
         workingDayRepository.deleteById(id);
     }
 
-//    @Override
+    //    @Override
     public Optional<WorkingDay> findByDate(String dateStr) {
         Date date = new DateParser().parseStringToDate(dateStr);
 
@@ -97,8 +97,12 @@ public class WorkingDayService implements BaseService<WorkingDay> {
         Optional<WorkingDay> startDay = findByDate(start);
         Optional<WorkingDay> endDay = findByDate(end);
 
-        startDay.ifPresent(workingDay -> filtered.add(0, workingDay));
-        endDay.ifPresent(filtered::add);
+        if ((filtered.size() == 0) && (startDate.equals(endDate))) {
+            startDay.ifPresent(workingDay -> filtered.add(0, workingDay));
+        } else {
+            startDay.ifPresent(workingDay -> filtered.add(0, workingDay));
+            endDay.ifPresent(filtered::add);
+        }
 
         return filtered;
     }

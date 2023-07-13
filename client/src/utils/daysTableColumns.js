@@ -37,7 +37,7 @@ export const daysTableColumns = [
         title: "2%",
         dataIndex: "employerPercent",
         width: "10%",
-        render: (percent) => <Price price={-percent}/>
+        render: (percent) => <Price price={-Math.round(percent)}/>
     },
     {
         title: "10дн.",

@@ -28,15 +28,18 @@ const ExpensesData = () => {
                 setExpenses(res?.data || []);
 
                 const generalCalcs = {
-                    cash: 0
+                    cash: 0,
+                    able: false
                 }
+
+                generalCalcs.able = res?.data.length > 0
 
                 res?.data?.forEach(obj => {
                     generalCalcs.cash += obj.cash;
                 });
 
                 generalCalcs.name = "Всі витрати за вибраний період"
-                generalCalcs.date = `${res?.data[0].date} - ${res?.data[res?.data?.length - 1].date}`
+                generalCalcs.date = `${res?.data[0]?.date} - ${res?.data[res?.data?.length - 1]?.date}`
                 setResult(generalCalcs || {});
                 setShowCalcs(true);
             });
@@ -66,7 +69,7 @@ const ExpensesData = () => {
                     bordered
                     style={{marginTop: "20px"}}
                     columns={expenseTableColumns}
-                    dataSource={[result]}
+                    dataSource={result.able ? [result] : []}
                     pagination={false}
                 />
             }
@@ -76,12 +79,7 @@ const ExpensesData = () => {
                 style={{marginTop: "20px"}}
                 columns={expenseTableColumns}
                 dataSource={expenses}
-                pagination={
-                    endDate.length > 0 ?
-                        {
-                            pageSize: Number(endDate.slice(0, 2))
-                        } : false
-                }
+                pagination={false}
             />
         </div>
     );

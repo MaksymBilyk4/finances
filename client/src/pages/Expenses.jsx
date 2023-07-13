@@ -15,11 +15,15 @@ const Expenses = () => {
     const onDescriptionChange = e => setDescription(e.target.value);
 
     const onSubmit = () => {
-        const data = create({
+        create({
             date: parseDate(date),
             name: description,
             cash: cost
         });
+
+        setDescription("");
+        setCost(0);
+        setDate("");
     }
 
     return (
@@ -53,6 +57,7 @@ const Expenses = () => {
             <Button onClick={onSubmit}
                     style={{marginTop: "10px"}}
                     type="primary"
+                    disabled={date.length <= 0 || Number(cost) <= 0 || description.length <= 0}
             >Зберегти</Button>
         </>
 

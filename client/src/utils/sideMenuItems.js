@@ -29,6 +29,6 @@ export const sideMenuItems = [
     {
         key: PATH.EDITING,
         icon: <EditOutlined />,
-        label: (<Link to={PATH.EDITING}>Редагування / Видалення</Link>)
+        label: (<Link to={PATH.EDITING}>Видалення</Link>)
     }
 ]

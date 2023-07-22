@@ -8,7 +8,6 @@ import {findAll as findAllDays} from "../api/day_api";
 
 const Editing = () => {
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [days, setDays] = useState([]);
     const [expenses, setExpenses] = useState([]);
 
@@ -20,12 +19,10 @@ const Editing = () => {
 
     const onHandleDeleteDay = (id) => {
         deleteByIdDay(id);
-        window.history.go(0);
     }
 
     const onHandleDeleteExpense = (id) => {
         deleteByIdExpense(id);
-        window.history.go(0);
     }
 
     return (

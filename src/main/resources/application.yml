@@ -4,8 +4,12 @@ spring:
   profiles:
     active: ${ACTIVE}
 
+
 api:
   version: /api/v1
+
+server:
+  port: ${PORT}
 
 ---
 
@@ -28,9 +32,6 @@ spring:
     database: postgresql
     database-platform: ${LOCAL_JPA_DIALECT}
 
-server:
-  port: ${LOCAL_PORT}
-
 ---
 
 spring:
@@ -51,30 +52,3 @@ spring:
         format_sql: true
     database: postgresql
     database-platform: ${LOCAL_JPA_DIALECT}
-
-server:
-  port: ${DEV_PORT}
-
-#spring:
-#  profiles:
-#    active: @spring.profiles.active@
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/finance_records
-#    username: postgres
-#    password: postgres
-#    driver-class-name: org.postgresql.Driver
-#  jpa:
-#    hibernate:
-#      ddl-auto: update
-#    show-sql: true
-#    properties:
-#      hibernate:
-#        format_sql: true
-#    database: postgresql
-#    database-platform: org.hibernate.dialect.PostgreSQLDialect
-#
-#server:
-#  port: 9000
-#
-#api:
-#  version: /api/v1

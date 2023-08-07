@@ -79,26 +79,20 @@ public class ExpenseService implements BaseService<Expense> {
 
         DateParser dateParser = new DateParser();
 
+        Calendar startCalendar = Calendar.getInstance();
         Date startDate = dateParser.parseStringToDate(start);
+        startCalendar.setTime(startDate);
+        startCalendar.add(Calendar.HOUR_OF_DAY, -24);
+
+        Calendar endCalendar = Calendar.getInstance();
         Date endDate = dateParser.parseStringToDate(end);
+        endCalendar.setTime(endDate);
+        endCalendar.add(Calendar.HOUR_OF_DAY, +24);
 
 
-        List<Expense> filtered = new ArrayList<>(days.stream()
-                .filter(d -> d.getDay().after(startDate) && d.getDay().before(endDate))
+        return new ArrayList<>(days.stream()
+                .filter(d -> d.getDay().after(startCalendar.getTime()) && d.getDay().before(endCalendar.getTime()))
                 .sorted(Comparator.comparing(Expense::getDay))
                 .toList());
-
-        Optional<Expense> startDay = findByDate(start);
-        Optional<Expense> endDay = findByDate(end);
-
-        if (filtered.size() == 0 && startDate.equals(endDate)) {
-            startDay.ifPresent(expense -> filtered.add(0, expense));
-        } else {
-            startDay.ifPresent(expense -> filtered.add(0, expense));
-            endDay.ifPresent(filtered::add);
-        }
-
-
-        return filtered;
     }
 }

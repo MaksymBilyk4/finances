@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import {Button, DatePicker, Table} from "antd";
 import {findByPeriod as dayPeriod} from "../api/day_api";
 import {findByPeriod as expensePeriod} from "../api/expense_api";
+import {findByPeriod as salaryPeriod} from "../api/salary_api";
 import {combinedData} from "../utils/combinedData";
 import {daysTableColumns} from "../utils/daysTableColumns";
 import {expenseTableColumns} from "../utils/expenseTableColumns";
+import {salaryTableColumns} from "../utils/salaryTableColumns";
 
 const {RangePicker} = DatePicker;
 
@@ -14,6 +16,7 @@ const Total = () => {
     const [endDate, setEndDate] = useState("");
     const [total, setTotal] = useState({
         date: "",
+        employerSalary: 0,
         cash: 0,
         cardProfit: 0,
         cashProfit: 0,
@@ -26,6 +29,7 @@ const Total = () => {
 
     const [expenses, setExpenses] = useState([]);
     const [day, setDay] = useState([]);
+    const [salary, setSalary] = useState([]);
 
     const onChange = (value, dateString) => {
         setStartDate(dateString[0]);
@@ -61,6 +65,16 @@ const Total = () => {
                     total.clearProfit += -e.cash;
                 });
             });
+
+        salaryPeriod(startDate, endDate)
+            .then(res => {
+                setSalary(res?.data)
+
+                res?.data?.forEach(s => {
+                    total.employerSalary += s.salary;
+                    total.clearProfit += -s.salary
+                })
+            })
     }
 
     return (
@@ -109,6 +123,16 @@ const Total = () => {
                 bordered={true}
                 columns={expenseTableColumns}
             />
+
+            <p style={{fontWeight: "bold", marginTop: "20px", textAlign: "center"}}>ЗП</p>
+            <Table
+                style={{marginTop: "5px"}}
+                pagination={false}
+                dataSource={salary}
+                bordered={true}
+                columns={salaryTableColumns}
+            />
+
         </div>
     );
 };

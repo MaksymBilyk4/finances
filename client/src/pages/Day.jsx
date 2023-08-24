@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, DatePicker, InputNumber, message, Select} from "antd";
 import {parseDate} from "../utils/parseDate";
 import {create} from "../api/day_api";
+import {findAll} from "../api/employers_api";
 
 const Day = () => {
 
@@ -12,17 +13,26 @@ const Day = () => {
     const [profit, setProfit] = useState(0);
     const [employerPercent, setEmployerPercent] = useState(0);
     const [dailySalary, setDailySalary] = useState(0);
-    const [salary, setSalary] = useState(0);
+    // const [salary, setSalary] = useState(0);
     const [clearProfit, setClearProfit] = useState(0);
     const [showData, setShowData] = useState(false);
     const [messageApi, contextHolder] = message.useMessage();
+    const [employers, setEmployers] = useState([]);
+
+    useEffect(() => {
+        findAll().then(res => {
+            setEmployers(res?.data?.map(e => {
+                return {value: e.name, label: e.name}
+            }))
+        });
+    }, []);
 
     const onDateChange = val => setDate(val?.$d || "");
     const onEmployerChange = val => setEmployer(val);
     const onCashChange = val => setCashProfit(val);
     const onCardChange = val => setCardProfit(val);
     const onDailySalaryChange = val => setDailySalary(val);
-    const onSalaryChange = val => setSalary(val || 0);
+    // const onSalaryChange = val => setSalary(val || 0);
 
     const onDataCalc = () => {
         const percent = Math.round((cardProfit + cashProfit) * 0.02);
@@ -30,7 +40,7 @@ const Day = () => {
 
         setProfit(earns);
         setEmployerPercent(percent);
-        setClearProfit(earns - salary - dailySalary - percent);
+        setClearProfit(earns - dailySalary - percent);
         setShowData(true);
     }
 
@@ -51,7 +61,7 @@ const Day = () => {
             profit: profit,
             employerPercent: employerPercent,
             dailySalary: dailySalary,
-            salary: salary,
+            salary: 0,
             clearProfit: clearProfit
         }
 
@@ -63,7 +73,7 @@ const Day = () => {
         setProfit(0);
         setEmployerPercent(0);
         setDailySalary(0);
-        setSalary(0);
+        // setSalary(0);
         setClearProfit(0);
         setShowData(false);
         success();
@@ -83,19 +93,9 @@ const Day = () => {
             <div style={{marginTop: "10px"}}>
                 <p>Працівник: </p>
                 <Select
-                    defaultValue="DARIA"
                     style={{width: 120,}}
                     onChange={onEmployerChange}
-                    options={[
-                        {
-                            value: 'DARIA',
-                            label: 'Даша',
-                        },
-                        {
-                            value: 'YULIA',
-                            label: 'Юля',
-                        }
-                    ]}
+                    options={employers}
                 />
             </div>
 
@@ -126,14 +126,14 @@ const Day = () => {
                 />
             </div>
 
-            <div style={{marginTop: "10px"}}>
-                <p>З/П за 10 днів: </p>
-                <InputNumber addonAfter="UAH"
-                             defaultValue={0}
-                             value={salary}
-                             onChange={onSalaryChange}
-                />
-            </div>
+            {/*<div style={{marginTop: "10px"}}>*/}
+            {/*    <p>З/П за 10 днів: </p>*/}
+            {/*    <InputNumber addonAfter="UAH"*/}
+            {/*                 defaultValue={0}*/}
+            {/*                 value={salary}*/}
+            {/*                 onChange={onSalaryChange}*/}
+            {/*    />*/}
+            {/*</div>*/}
 
             <div>
                 <Button onClick={onDataCalc}

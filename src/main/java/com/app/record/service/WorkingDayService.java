@@ -3,7 +3,6 @@ package com.app.record.service;
 import com.app.record.model.workingDay.WorkingDay;
 import com.app.record.repository.WorkingDayRepository;
 import com.app.record.utils.DateParser;
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -16,7 +15,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 @Slf4j
 @AllArgsConstructor
 public class WorkingDayService implements BaseService<WorkingDay> {

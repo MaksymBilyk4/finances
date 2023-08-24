@@ -21,9 +21,8 @@ public class WorkingDay extends BaseEntity {
     @Temporal(TemporalType.DATE)
     private Date day;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "employer",  nullable = false)
-    private Employer employerName;
+    private String employerName;
 
     @Column(name = "cash_profit", nullable = false)
     private int cashProfit;

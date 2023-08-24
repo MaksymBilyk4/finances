@@ -2,13 +2,10 @@ package com.app.record.facade.workingDay;
 
 import com.app.record.dto.workingDay.WorkingDayRequestDto;
 import com.app.record.facade.GeneralFacade;
-import com.app.record.model.workingDay.Employer;
 import com.app.record.model.workingDay.WorkingDay;
 import com.app.record.utils.DateParser;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
@@ -26,7 +23,7 @@ public class WorkingDayRequestMapper extends GeneralFacade<WorkingDay, WorkingDa
         Date date = dateParser.parseStringToDate(dto.getDate());
         entity.setDay(date);
 
-        entity.setEmployerName(Employer.valueOf(dto.getEmployer()));
+        entity.setEmployerName(dto.getEmployer());
     }
 
 }

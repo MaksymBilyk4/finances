@@ -7,6 +7,12 @@ export const combinedData = [
         width: "10%",
     },
     {
+        title: "ЗП",
+        dataIndex: "employerSalary",
+        width: "10%",
+        render: (salary) => <Price price={Number(-salary)}/>
+    },
+    {
         title: "Витрати",
         dataIndex: "cash",
         width: "10%",
@@ -40,12 +46,12 @@ export const combinedData = [
         width: "10%",
         render: (percent) => <Price price={-Math.round(percent)}/>
     },
-    {
-        title: "10дн.",
-        dataIndex: "salary",
-        width: "10%",
-        render: (salary) => <Price price={salary !== 0 ? -salary : salary}/>
-    },
+    // {
+    //     title: "10дн.",
+    //     dataIndex: "salary",
+    //     width: "10%",
+    //     render: (salary) => <Price price={salary !== 0 ? -salary : salary}/>
+    // },
     {
         title: "Чисті",
         dataIndex: "clearProfit",

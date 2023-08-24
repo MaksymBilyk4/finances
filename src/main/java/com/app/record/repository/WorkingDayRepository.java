@@ -1,6 +1,5 @@
 package com.app.record.repository;
 
-import com.app.record.model.workingDay.Employer;
 import com.app.record.model.workingDay.WorkingDay;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,8 +13,6 @@ import java.util.Optional;
 public interface WorkingDayRepository extends JpaRepository<WorkingDay, Long> {
 
     Page<WorkingDay> findAll(Pageable pageable);
-
-    Optional<WorkingDay> findByEmployerName(Employer employer);
 
     Optional<WorkingDay> findByDay (Date day);
 

@@ -16,7 +16,7 @@ const Total = () => {
     const [endDate, setEndDate] = useState("");
     const [total, setTotal] = useState({
         date: "",
-        employerSalary: 0,
+        // employerSalary: 0,
         cash: 0,
         cardProfit: 0,
         cashProfit: 0,
@@ -66,15 +66,15 @@ const Total = () => {
                 });
             });
 
-        salaryPeriod(startDate, endDate)
-            .then(res => {
-                setSalary(res?.data)
-
-                res?.data?.forEach(s => {
-                    total.employerSalary += s.salary;
-                    total.clearProfit += -s.salary
-                })
-            })
+        // salaryPeriod(startDate, endDate)
+        //     .then(res => {
+        //         setSalary(res?.data)
+        //
+        //         res?.data?.forEach(s => {
+        //             total.employerSalary += s.salary;
+        //             total.clearProfit += -s.salary
+        //         })
+        //     })
     }
 
     return (

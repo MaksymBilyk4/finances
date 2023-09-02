@@ -37,12 +37,12 @@ export const sideMenuItems = [
         label: (<Link to={PATH.EXPENSE_DATA}>Витрати - таблиця даних</Link>),
         description: "На цій сторінкі можна переглянути таблицю з усіма витратами та продивитись витрати за окремий період"
     },
-    {
-        key: PATH.SALARY_ADMIN,
-        icon: <TransactionOutlined/>,
-        label: (<Link to={PATH.SALARY_ADMIN}>ЗП - додати З/П</Link>),
-        description: "На цій сторінкі ви можете вписувати скільки і кому ви заплатили ЗП за 10 днів"
-    },
+    // {
+    //     key: PATH.SALARY_ADMIN,
+    //     icon: <TransactionOutlined/>,
+    //     label: (<Link to={PATH.SALARY_ADMIN}>ЗП - додати З/П</Link>),
+    //     description: "На цій сторінкі ви можете вписувати скільки і кому ви заплатили ЗП за 10 днів"
+    // },
 
     {
         key: PATH.SALARY,

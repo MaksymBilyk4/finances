@@ -6,12 +6,12 @@ export const combinedData = [
         dataIndex: "date",
         width: "10%",
     },
-    {
-        title: "ЗП",
-        dataIndex: "employerSalary",
-        width: "10%",
-        render: (salary) => <Price price={Number(-salary)}/>
-    },
+    // {
+    //     title: "ЗП",
+    //     dataIndex: "employerSalary",
+    //     width: "10%",
+    //     render: (salary) => <Price price={Number(-salary)}/>
+    // },
     {
         title: "Витрати",
         dataIndex: "cash",

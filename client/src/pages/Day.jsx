@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Button, DatePicker, InputNumber, message, Select} from "antd";
 import {parseDate} from "../utils/parseDate";
+import {create as createSalary} from "../api/salary_api";
 import {create} from "../api/day_api";
 import {findAll} from "../api/employers_api";
 
 const Day = () => {
 
     const [date, setDate] = useState("");
-    const [employer, setEmployer] = useState("DARIA");
+    const [employer, setEmployer] = useState("");
     const [cashProfit, setCashProfit] = useState(0);
     const [cardProfit, setCardProfit] = useState(0);
     const [profit, setProfit] = useState(0);
@@ -18,17 +19,22 @@ const Day = () => {
     const [showData, setShowData] = useState(false);
     const [messageApi, contextHolder] = message.useMessage();
     const [employers, setEmployers] = useState([]);
+    const [employerId, setEmployerId] = useState(0);
 
     useEffect(() => {
         findAll().then(res => {
             setEmployers(res?.data?.map(e => {
-                return {value: e.name, label: e.name}
+                return {value: e.name, label: e.name, id: e.id}
             }))
         });
     }, []);
+    // console.log(employer)
 
     const onDateChange = val => setDate(val?.$d || "");
-    const onEmployerChange = val => setEmployer(val);
+    const onEmployerChange = (val, obj) => {
+        setEmployer(val);
+        setEmployerId(obj.id);
+    }
     const onCashChange = val => setCashProfit(val);
     const onCardChange = val => setCardProfit(val);
     const onDailySalaryChange = val => setDailySalary(val);
@@ -65,7 +71,14 @@ const Day = () => {
             clearProfit: clearProfit
         }
 
+        const salaryData = {
+            date: parseDate(date),
+            salary: employerPercent + dailySalary,
+            employerId: employerId
+        }
+
         create(data);
+        createSalary(salaryData)
 
         setDate("");
         setCashProfit(0);

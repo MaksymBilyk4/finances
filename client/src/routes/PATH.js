@@ -8,7 +8,7 @@ export const PATH = {
     TOTAL: "/total",
     EMPLOYERS_ADMIN: "/employers-admin",
     EMPLOYERS: "/employers-data",
-    SALARY_ADMIN: "/salary-admin",
+    // SALARY_ADMIN: "/salary-admin",
     SALARY: "/salary-data",
     EMPLOYER: "/employer/:name",
     employer: (name) => `/employer/${name}`,

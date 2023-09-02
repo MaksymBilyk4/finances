@@ -6,7 +6,7 @@ import ExpensesData from "../pages/ExpensesData";
 import Editing from "../pages/Editing";
 import Total from "../pages/Total";
 import Employers from "../pages/Employers";
-import Salary from "../pages/Salary";
+// import Salary from "../pages/Salary";
 import EmployersData from "../pages/EmployersData";
 import Employer from "../pages/Employer";
 import SalaryData from "../pages/SalaryData";
@@ -45,10 +45,10 @@ export const routes = [
         element: <Employers/>,
         path: PATH.EMPLOYERS_ADMIN
     },
-    {
-        element: <Salary/>,
-        path: PATH.SALARY_ADMIN
-    },
+    // {
+    //     element: <Salary/>,
+    //     path: PATH.SALARY_ADMIN
+    // },
     {
         element: <SalaryData/>,
         path: PATH.SALARY

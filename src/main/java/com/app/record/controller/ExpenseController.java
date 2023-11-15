@@ -30,6 +30,7 @@ public class ExpenseController {
                 .collect(Collectors.toList());
     }
 
+
     @GetMapping
     public List<ExpenseResponseDto> findAllPageable(
             @RequestParam int pageNumber,
